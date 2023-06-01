@@ -42,6 +42,12 @@ class GameController extends Controller
     public function store(StoreGameRequest $request)
     {
         //dd($request->all());
+
+
+        $val_data = $request->validated();
+        //dd($val_data);
+
+        /*
         $data = [
             'name' => $request->name,
             'image' => $request->image,
@@ -50,10 +56,10 @@ class GameController extends Controller
             'release_date' => $request->release_date,
             'has_demo' => $request->has_demo,
             'description' => $request->description
-        ];
+        ]; */
 
 
-        Game::create($data);
+        Game::create($val_data);
 
         return to_route('admin.games.index')->with('message', 'game added successfully');
     }
@@ -90,8 +96,11 @@ class GameController extends Controller
     public function update(UpdateGameRequest $request, Game $game)
     {
         //dd($request->all());
+        //validate data
+        $val_data = $request->validated();
+        //dd($val_data);
         /* TODO: check has demo not updating */
-        $data = [
+        /*    $data = [
             'name' => $request->name,
             'image' => $request->image,
             'platform' => $request->platform,
@@ -99,8 +108,8 @@ class GameController extends Controller
             'release_date' => $request->release_date,
             'has_demo' => $request->has_demo ? 1 : 0,
             'description' => $request->description
-        ];
-        $game->update($data);
+        ]; */
+        $game->update($val_data);
 
         return to_route('admin.games.index')->with('message', 'game updated');
     }

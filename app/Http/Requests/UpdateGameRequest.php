@@ -24,7 +24,12 @@ class UpdateGameRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|min:5|max:50',
+            'image' => 'nullable|max:255',
+            'platform' => 'nullable',
+            'price' => 'nullable',
+            'release_date' => 'nullable|date',
+            'description' => 'nullable'
         ];
     }
 }
